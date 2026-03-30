@@ -2,9 +2,12 @@
   "name": "expo-todo-app",
   "version": "1.0.0",
   "main": "index.js",
+  "homepage": "https://wyattchou.github.io/Expo-Todo-App",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
+    "predeploy": "expo export -p web",
+    "deploy": "gh-pages --nojekyll -d dist",
     "ios": "expo start --ios",
     "web": "expo start --web"
   },
@@ -14,11 +17,14 @@
     "@rneui/themed": "^5.0.0",
     "expo": "~54.0.33",
     "expo-status-bar": "~3.0.9",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "react-native": "0.81.5",
     "react-native-web": "^0.21.0",
-    "react-test-renderer": "^19.2.4"
+    "react-test-renderer": "19.2.0"
   },
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
 }
