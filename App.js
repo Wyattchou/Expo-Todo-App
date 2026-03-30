@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, FlatList, Text } from 'react-native';
 import { CheckBox, Input, Button } from '@rneui/themed';
+import { TouchableOpacity } from "react-native";
 
 export default function App() {
 
@@ -28,18 +29,22 @@ export default function App() {
     setNewTask('');
   };
 
-  const renderItem = ({ item }) => (
-    <CheckBox
-      title={
-        <Text style={item.completed ? styles.completed : styles.text}>
-          {item.description}
-        </Text>
-      }
-      checked={item.completed}
-      onPress={() => toggleTask(item.key)}
-    />
-  );
+ const renderItem = ({ item }) => (
+  <TouchableOpacity
+    style={styles.taskRow}
+    onPress={() => toggleTask(item.key)}
+  >
+    {/* Checkbox symbol */}
+    <Text style={styles.checkbox}>
+      {item.completed ? "☑" : "☐"}
+    </Text>
 
+    {/* Task text */}
+    <Text style={item.completed ? styles.completedTask : styles.taskText}>
+      {item.description}
+    </Text>
+  </TouchableOpacity>
+);
   return (
     <View style={styles.container}>
       <Text style={styles.header}>TODO List</Text>
@@ -88,5 +93,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 20,
+  },
+   taskRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 10
+  },
+  checkbox: {
+    fontSize: 22,
+    marginRight: 10
+  },
+  completedTask: {
+    fontSize: 18,
+    textDecorationLine: "line-through",
+  },
+   taskText: {
+    fontSize: 18,
   },
 });
