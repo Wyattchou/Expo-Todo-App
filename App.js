@@ -3,16 +3,14 @@ import { StyleSheet, View, FlatList, Text } from 'react-native';
 import { CheckBox, Input, Button } from '@rneui/themed';
 
 export default function App() {
-  // Initial tasks
+
   const [tasks, setTasks] = useState([
     { key: '1', description: 'Buy groceries', completed: false },
     { key: '2', description: 'Walk the dog', completed: true },
   ]);
 
-  // Input state for new task
   const [newTask, setNewTask] = useState('');
 
-  // Toggle completed state
   const toggleTask = (key) => {
     const updatedTasks = tasks.map((task) => {
       if (task.key === key) {
@@ -23,15 +21,13 @@ export default function App() {
     setTasks(updatedTasks);
   };
 
-  // Add new task
   const addTask = () => {
-    if (newTask.trim() === '') return; // Ignore empty input
+    if (newTask.trim() === '') return; 
     const newKey = (tasks.length + 1).toString();
     setTasks([...tasks, { key: newKey, description: newTask, completed: false }]);
     setNewTask('');
   };
 
-  // Render each item
   const renderItem = ({ item }) => (
     <CheckBox
       title={
